@@ -2,12 +2,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-template<class T> using vec = vector<T>;
 #endif
 
 struct dsu {
-    vec<ll> parent, rank;
-    dsu(ll n) : parent(vec<ll>(n + 1)), rank(vec<ll>(n + 1)) {
+    vector<ll> parent, rank;
+    dsu(ll n) : parent(vector<ll>(n + 1)), rank(vector<ll>(n + 1)) {
         for (ll i = 0; i <= n; ++i)
             make_set(i);
     };

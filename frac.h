@@ -1,6 +1,5 @@
 #ifndef INCLUDE
 #include <bits/stdc++.h>
-#include <random>
 using namespace std;
 using ll = long long;
 using ld = long double;
@@ -16,6 +15,10 @@ struct frac {
     };
 
     template<class T> frac(T x = 0, T y = 1) {
+        *this = frac((ll)x, (ll)y);
+    }
+
+    template<class T, class N> frac(T x = 0, N y = 1) {
         *this = frac((ll)x, (ll)y);
     }
 

@@ -1,14 +1,12 @@
 #ifndef INCLUDE
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long;
-template<class T> using vec = vector<T>;
 #endif
 
 struct graph {
-    vec<bool> used;
-    vec<vec<int>> edges;
-    vec<int> d;
+    vector<bool> used;
+    vector<vector<int>> edges;
+    vector<int> d;
     int n;
     graph(int n) : n(n) {
         edges.assign(n + 1, {});
@@ -30,24 +28,15 @@ struct graph {
         }
     }
 
-    auto dfs(int s) {
-        used.assign(n + 1, {});
-        return __dfs(s);
-    }
 
-    auto bfs(int s) {
-        used.assign(n + 1, {});
-        return __bfs(s);
-    }
-
-    void __dfs(int s) {
+    void dfs(int s) {
         used[s] = true;
         for (auto v : edges[s])
             if (!used[v])
-                __dfs(v);
+                dfs(v);
     }
 
-    void __bfs(int s) {
+    void bfs(int s) {
         queue<int> q;
         q.push(s);
         used[s] = true;
@@ -63,5 +52,15 @@ struct graph {
                     d[v] = d[u] + 1;
                 }
         }
+    }
+    
+    auto new_dfs(int s) {
+        used.assign(n + 1, {});
+        return dfs(s);
+    }
+
+    auto new_bfs(int s) {
+        used.assign(n + 1, {});
+        return bfs(s);
     }
 };
