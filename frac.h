@@ -46,43 +46,35 @@ struct frac {
     }
 
     frac &operator +=(const frac &a) {
-        *this = frac(x * a.y + y * a.x, y * a.y);
-        return *this;
+        return *this = frac(x * a.y + y * a.x, y * a.y);
     }
 
     frac &operator -=(const frac &a) {
-        *this = frac(x * a.y - y * a.x, y * a.y);
-        return *this;
+        return *this = frac(x * a.y - y * a.x, y * a.y);
     }
 
     frac &operator *=(const frac &a) {
-        *this = frac(x * a.x, y * a.y);
-        return *this;
+        return *this = frac(x * a.x, y * a.y);
     }
 
     frac &operator /=(const frac &a) {
-        *this = frac(x * a.y, y * a.x);
-        return *this;
+        return *this = frac(x * a.y, y * a.x);
     }
 
     friend frac operator +(frac a, const frac &b) {
-        a += b;
-        return a;
+        return a += b;
     }
 
     friend frac operator -(frac a, const frac &b) {
-        a -= b;
-        return a;
+        return a -= b;
     }
 
     friend frac operator *(frac a, const frac &b) {
-        a *= b;
-        return a;
+        return a *= b;
     }
 
     friend frac operator /(frac a, const frac &b) {
-        a /= b;
-        return a;
+        return a /= b;
     }
 
     frac operator -() const {
