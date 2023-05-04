@@ -50,8 +50,19 @@ tmp2 auto max(T a, N b) { return sizeof(a) > sizeof(b) ? max(a, (T)b) : max((N)a
 #ifdef __GNUC__
 __extension__ typedef __int128 int128;
 __extension__ typedef __float128 float128;
-auto &operator>>(istream &is, int128 &x) { ll e; is >> e; x = e; return is; }
-auto &operator>>(istream &is, float128 &x) { long double e; is >> e; x = e; return is; }
+auto &operator>>(istream &is, int128 &x) {
+    ll e;
+    is >> e;
+    x = e;
+    return is;
+}
+
+auto &operator>>(istream &is, float128 &x) {
+    long double e;
+    is >> e;
+    x = e;
+    return is;
+}
 auto &operator<<(ostream &os, int128 &x) { return os << (long long)x; }
 auto &operator<<(ostream &os, float128 &x) { return os << (long double)x; }
 #else
@@ -59,14 +70,38 @@ using int128 = long long;
 using float128 = long double;
 #endif
 
-tmp1 auto &operator>>(istream &is, vec<T> &x) { fore(x) is >> e; return is; }
-tmp1 auto &operator>>(istream &is, vec<vec<T>> &x) { fore(x) is >> e; return is; }
-tmpk auto &operator>>(istream &is, arr<T, k> &x) { fore(x) is >> e; return is; }
-tmpk auto &operator>>(istream &is, vec<arr<T, k>> &x) { fore(x) is >> e; return is; }
-tmp1 auto &operator<<(ostream &os, vec<T> &x) { fore(x) os << e << " "; return os; }
-tmp1 auto &operator<<(ostream &os, vec<vec<T>> &x) { fore(x) os << e << "\n"; return os; }
-tmpk auto &operator<<(ostream &os, arr<T, k> &x) { fore(x) os << e << " "; return os; }
-tmpk auto &operator<<(ostream &os, vec<arr<T, k>> &x) { fore(x) os << e << "\n"; return os; }
+tmp1 auto &operator>>(istream &is, vec<T> &x) {
+    fore(x) is >> e;
+    return is;
+}
+tmp1 auto &operator>>(istream &is, vec<vec<T>> &x) {
+    fore(x) is >> e;
+    return is;
+}
+tmpk auto &operator>>(istream &is, arr<T, k> &x) {
+    fore(x) is >> e;
+    return is;
+}
+tmpk auto &operator>>(istream &is, vec<arr<T, k>> &x) {
+    fore(x) is >> e;
+    return is;
+}
+tmp1 auto &operator<<(ostream &os, vec<T> &x) {
+    fore(x) os << e << " ";
+    return os;
+}
+tmp1 auto &operator<<(ostream &os, vec<vec<T>> &x) {
+    fore(x) os << e << "\n";
+    return os;
+}
+tmpk auto &operator<<(ostream &os, arr<T, k> &x) {
+    fore(x) os << e << " ";
+    return os;
+}
+tmpk auto &operator<<(ostream &os, vec<arr<T, k>> &x) {
+    fore(x) os << e << "\n";
+    return os;
+}
 
 // get i-th bit from a:                #DEFINE bit(a,i) (((a)>>(i))&1LL)
 // x is a group like indicator:        bit(x,i) == 1  iff  i in x
@@ -79,42 +114,7 @@ mt19937 mt(rd());
 ll divup(ll a, ll b) { return a / b + ((a ^ b) > 0 && a % b); }     // dividing a by b rounded up
 ll divdown(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b); }   // dividing a by b rounded down
 ll truemod(ll a, ll b) { return a = a % b, a + (a < 0) * b; }
-ll gcd(ll x, ll y) { while (y) { x %= y; swap(x, y); } return abs(x); }
-ll lcm(ll x, ll y) { return abs(x * y) / gcd(x, y); }
 const ll inf = (ll)1e18;
 const ll mod = 1000000007;
 const ll N = 2e5 + 1;
 // vec<ll> f(N);
-
-void precalc() {
-
-}
-
-#define TESTS
-void solve() {
-
-}
-
-// #define COUNTING_TIME
-signed main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
-    cout.tie(0);
-    precalc();
-    signed T = 1;
-#ifdef TESTS
-    cin >> T;
-#endif
-#if defined(COUNTING_TIME) & defined(TESTS)
-    start_time = chrono::steady_clock::now();
-#endif
-    while (T--)
-        solve();
-#if defined(COUNTING_TIME) & defined(TESTS)
-    finish_time = chrono::steady_clock::now();
-    auto elapsed_ms =
-        chrono::duration_cast<chrono::milliseconds>(finish_time - start_time);
-    cerr << "\nElapsed time: " << elapsed_ms.count() << " ms\n";
-#endif
-    return 0;
-}

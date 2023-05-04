@@ -1,28 +1,28 @@
 #ifndef INCLUDE
-#include <bits/stdc++.h>
+#include <vector>
+#include <map>
 using namespace std;
-using ll = long long;
 #endif
 
 struct dsu {
-    vector<ll> parent, rank;
-    dsu(ll n) : parent(vector<ll>(n + 1)), rank(vector<ll>(n + 1)) {
-        for (ll i = 0; i <= n; ++i)
+    vector<int> parent, rank;
+    dsu(int n) : parent(vector<int>(n + 1)), rank(vector<int>(n + 1)) {
+        for (int i = 0; i <= n; ++i)
             make_set(i);
     };
 
-    void make_set(ll v) {
+    void make_set(int v) {
         parent[v] = v;
         rank[v] = 0;
     }
 
-    ll find_set(ll v) {
+    int find_set(int v) {
         if (v == parent[v])
             return v;
         return parent[v] = find_set(parent[v]);
     }
 
-    void union_sets(ll a, ll b) {
+    void union_sets(int a, int b) {
         a = find_set(a);
         b = find_set(b);
         if (a != b) {
@@ -38,9 +38,9 @@ struct dsu {
 template<class T>
 struct dsumap {
     multimap<T, T> parent;
-    multimap<T, ll> rank;
+    multimap<T, int> rank;
 
-    void make_set(T v) {
+    void make_set(const T &v) {
         parent[v] = v;
         rank[v] = 0;
     }

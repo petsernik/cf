@@ -1,15 +1,22 @@
 #ifndef INCLUDE
-#include <bits/stdc++.h>
-using namespace std;
+#include "include.h"
 #endif
 
 struct graph {
-    vector<bool> used;
-    vector<vector<int>> edges;
-    vector<int> d;
+    vec<bool> used;
+    vec<vec<int>> edges;
+    vec<int> d;
     int n;
+
     graph(int n) : n(n) {
+        used.assign(n + 1, {});
         edges.assign(n + 1, {});
+        //d.assign(n + 1, {});
+    }
+    
+    graph(int n, int k) : n(n) {
+        graph::graph(n);
+        read(k);
     }
 
     void read(int k) {
@@ -53,7 +60,7 @@ struct graph {
                 }
         }
     }
-    
+
     auto new_dfs(int s) {
         used.assign(n + 1, {});
         return dfs(s);
@@ -62,5 +69,25 @@ struct graph {
     auto new_bfs(int s) {
         used.assign(n + 1, {});
         return bfs(s);
+    }
+
+    void add(int x, int y) {
+        edges[x].push_back(y);
+        edges[y].push_back(x);
+    }
+
+    int countEdges() {
+        int sum = 0;
+        for (auto edgesx : edges)
+            sum += edgesx.size();
+        return sum / 2;
+    }
+
+    friend auto &operator<<(ostream &os, const graph &g) {
+        for (int i = 0; i < g.edges.size(); ++i)
+            for (auto &j : g.edges[i])
+                if (i < j)
+                    os << i << " " << j << "\n";
+        return os;
     }
 };

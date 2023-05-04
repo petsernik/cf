@@ -147,11 +147,14 @@
     <ClInclude Include="dsu.h" />
     <ClInclude Include="frac.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="include.h" />
     <ClInclude Include="mint.h" />
+    <ClInclude Include="numbers.h" />
     <ClInclude Include="segtree.h" />
     <ClInclude Include="treap.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".clang-format" />
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>

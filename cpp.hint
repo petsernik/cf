@@ -3,3 +3,10 @@
 // Дополнительные сведения: https://go.microsoft.com/fwlink/?linkid=865984
 #define print(ans)
 #define fore(a) for (auto &e : (a))
+#define tmpT__
+#define tmp2
+#define all(x) (x).begin(), (x).end()
+#define all(a) (a).begin(), (a).end()
+#define tmp1
+#define tmp3
+#define tmpk
