@@ -14,11 +14,6 @@ struct graph {
         //d.assign(n + 1, {});
     }
     
-    graph(int n, int k) : n(n) {
-        graph::graph(n);
-        read(k);
-    }
-
     void read(int k) {
         while (k--) {
             int x, y; cin >> x >> y;
