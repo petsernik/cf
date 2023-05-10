@@ -129,7 +129,7 @@ const ll N = 2e5 + 1;
 // typedef bitset<N> rel;
 
 void precalc() {
-
+    
 }
 
 #define TESTS
