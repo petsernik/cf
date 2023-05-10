@@ -11,9 +11,7 @@ template <typename T> struct segtree {
         // default value is a neutral element for "+"
         node(T x = T()) : sum(x), inheritance(0), change_indicator(false) {}
         // merge nodes
-        friend node operator+(const node &a, const node &b) {
-            return node{a.sum + b.sum};
-        }
+        friend node operator+(const node &a, const node &b) { return node{a.sum + b.sum}; }
         // operation "+" in node
         void add(T x, int l, int r) {
             sum += (r - l) * x;
@@ -34,8 +32,7 @@ template <typename T> struct segtree {
         }
         operator T() const { return sum; }
         ostream &operator<<(ostream &ostr) {
-            return ostr << sum << " " << inheritance << " " << change_indicator
-                        << "\n";
+            return ostr << sum << " " << inheritance << " " << change_indicator << "\n";
         }
     };
     vector<node> tree;

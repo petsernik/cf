@@ -5,8 +5,7 @@ random_device rd;
 mt19937 mt(rd());
 #endif
 
-template <typename T>
-struct treap {
+template <typename T> struct treap {
     struct node {
         // for all k1 from left, k2 from right: k1<k<=k2;
         // for all p1 from left or right:       p1<=p;
@@ -41,8 +40,7 @@ struct treap {
                 node->right = p.first;
                 update(node);
                 return {node, p.second};
-            }
-            else {
+            } else {
                 auto p = split(node->left, x);
                 node->left = p.second;
                 update(node);
@@ -59,8 +57,7 @@ struct treap {
                 node->right = p.first;
                 update(node);
                 return {node, p.second};
-            }
-            else {
+            } else {
                 auto p = split_size(node->left, k - 1 - node->right_size());
                 node->left = p.second;
                 update(node);
@@ -76,8 +73,7 @@ struct treap {
                 t1->right = merge(t1->right, t2);
                 update(t1);
                 return t1;
-            }
-            else {
+            } else {
                 t2->left = merge(t1, t2->left);
                 update(t2);
                 return t2;
@@ -193,7 +189,5 @@ struct treap {
         return os;
     }
 
-    friend ostream &operator<<(ostream &os, const treap &treap) {
-        return os << treap.head;
-    }
+    friend ostream &operator<<(ostream &os, const treap &treap) { return os << treap.head; }
 };

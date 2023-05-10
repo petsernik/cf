@@ -2,7 +2,13 @@
 #include "include.h"
 #endif
 
-ll gcd(ll x, ll y) { while (y) { x %= y; swap(x, y); } return abs(x); }
+ll gcd(ll x, ll y) {
+    while (y) {
+        x %= y;
+        swap(x, y);
+    }
+    return abs(x);
+}
 
 void create_primes() {
     ll N;
@@ -35,13 +41,15 @@ arr<ll, 3> prim_deg(ll x) {
             break;
         }
     if (p == 1)
-        if (x > 1) return { 1, 1, x };
-        else return { 0, 0, 0 };
+        if (x > 1)
+            return {1, 1, x};
+        else
+            return {0, 0, 0};
     else {
         ll k = 0;
         while (x % p == 0)
             x /= p, ++k;
-        return { x == 1, k, p };
+        return {x == 1, k, p};
     }
 }
 
@@ -101,15 +109,13 @@ struct mfr {
         return is;
     }
 
-    friend ostream &operator<<(ostream &os, const mfr &m) {
-        return os << m.x << " " << m.y;
-    }
+    friend ostream &operator<<(ostream &os, const mfr &m) { return os << m.x << " " << m.y; }
 };
 
 // mod-arithmetic operations, but exp and div only for primary mod
 struct mint {
     ll x;
-    mint(ll x = 0) : x(truemod(x, mod)) {};
+    mint(ll x = 0) : x(truemod(x, mod)){};
 
     static ll powmod(ll base, ll exponent, const ll &modulus) {
         base %= modulus;
@@ -178,7 +184,7 @@ struct mint {
 
     mint operator++(int) {
         mint a(*this);
-        ++ *this;
+        ++*this;
         return a;
     }
 
@@ -189,7 +195,7 @@ struct mint {
 
     mint operator--(int) {
         mint a(*this);
-        -- *this;
+        --*this;
         return a;
     }
 

@@ -11,12 +11,13 @@ struct graph {
     graph(int n) : n(n) {
         used.assign(n + 1, {});
         edges.assign(n + 1, {});
-        //d.assign(n + 1, {});
+        // d.assign(n + 1, {});
     }
-    
+
     void read(int k) {
         while (k--) {
-            int x, y; cin >> x >> y;
+            int x, y;
+            cin >> x >> y;
             edges[x].push_back(y);
             edges[y].push_back(x);
         }
@@ -24,7 +25,8 @@ struct graph {
 
     void read_tree_by_ancestors() {
         for (int i = 2; i <= n; ++i) {
-            int x; cin >> x;
+            int x;
+            cin >> x;
             edges[i].push_back(x);
             edges[x].push_back(i);
         }
@@ -33,9 +35,10 @@ struct graph {
 
     void dfs(int s) {
         used[s] = true;
-        for (auto v : edges[s])
+        for (auto v: edges[s]) {
             if (!used[v])
                 dfs(v);
+        }
     }
 
     void bfs(int s) {
@@ -46,9 +49,8 @@ struct graph {
         while (!q.empty()) {
             int u = q.front();
             q.pop();
-            for (auto v : edges[u])
-                if (!used[v])
-                {
+            for (auto v: edges[u])
+                if (!used[v]) {
                     q.push(v);
                     used[v] = true;
                     d[v] = d[u] + 1;
@@ -73,14 +75,14 @@ struct graph {
 
     int countEdges() {
         int sum = 0;
-        for (auto edgesx : edges)
+        for (auto edgesx: edges)
             sum += edgesx.size();
         return sum / 2;
     }
 
     friend auto &operator<<(ostream &os, const graph &g) {
         for (int i = 0; i < g.edges.size(); ++i)
-            for (auto &j : g.edges[i])
+            for (auto &j: g.edges[i])
                 if (i < j)
                     os << i << " " << j << "\n";
         return os;
