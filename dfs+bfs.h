@@ -3,12 +3,15 @@
 #endif
 
 struct graph {
+    graph(int n) : n(n) { init(); }
+    graph(int n, int m) : n(n), m(m) { init(), read(m); }
+
     vec<bool> used;
     vec<vec<int>> edges;
     vec<int> d;
-    int n;
+    int n, m = -1;
 
-    graph(int n) : n(n) {
+    void init() {
         used.assign(n + 1, {});
         edges.assign(n + 1, {});
         // d.assign(n + 1, {});
@@ -19,7 +22,7 @@ struct graph {
             int x, y;
             cin >> x >> y;
             edges[x].push_back(y);
-            edges[y].push_back(x);
+            edges[y].push_back(x); // comment this if directed graph
         }
     }
 
@@ -31,7 +34,6 @@ struct graph {
             edges[x].push_back(i);
         }
     }
-
 
     void dfs(int s) {
         used[s] = true;
@@ -74,6 +76,8 @@ struct graph {
     }
 
     int countEdges() {
+        if (m >= 0)
+            return m;
         int sum = 0;
         for (auto edgesx: edges)
             sum += edgesx.size();
