@@ -11,9 +11,11 @@ template <class T, size_t k> using arr = array<T, k>;
 #define all(a) (a).begin(), (a).end()
 #define myset(T, a, b, cmp) multiset<T, function<bool(T, T)>> s([&](T a, T b) { return cmp; })
 #define print(ans) cout << ans << "\n"
-#define prret(ans)                                                                                 \
-    print(ans);                                                                                    \
-    return
+#define prret(ans)  \
+    {               \
+        print(ans); \
+        return;     \
+    }
 #define fore(a) for (auto &e: (a))
 #define bit(a, i) (((a) >> (i)) & 1LL)
 #define mask(a, x) ((a) & (x))

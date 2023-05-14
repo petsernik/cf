@@ -19,6 +19,7 @@ AllowShortIfStatementsOnASingleLine: Never
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 2
 SpaceBeforeRangeBasedForLoopColon: false
+AlignEscapedNewlines: Left
 # InsertBraces: true
 ---
 Language: JavaScript
