@@ -111,11 +111,11 @@ void scanline() {
     ll n;
     cin >> n;
     vec<ll> a(n), b(n);
-    vec<vec<ll>> sl;
     for (ll i = 0; i < n; ++i)
         cin >> a[i];
     for (ll i = 0; i < n; ++i)
         cin >> b[i];
+    vec<vec<ll>> sl;
     for (ll i = 0; i < n; ++i) {
         sl.push_back({a[i], 1});  // open
         sl.push_back({b[i], -1}); // close

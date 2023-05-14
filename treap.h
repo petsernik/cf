@@ -48,7 +48,7 @@ template <typename T> struct treap {
             }
         }
 
-        // second tree has k vertices
+        // the second tree has exactly k vertices
         static pair<node *, node *> split_size(node *node, const size_t &k) {
             if (!node)
                 return {nullptr, nullptr};
@@ -65,7 +65,7 @@ template <typename T> struct treap {
             }
         }
 
-        // first keys must be less than second keys
+        // note that the first keys must be less than the second keys
         static node *merge(node *t1, node *t2) {
             if (!t1 || !t2)
                 return t1 ? t1 : t2;
@@ -171,8 +171,11 @@ template <typename T> struct treap {
     node *lower_bound(const T &x) { return head ? head->lower_bound(x) : nullptr; }
     node *upper_bound(const T &x) { return head ? head->upper_bound(x) : nullptr; }
 
+    // first keys less than k, second keys at least x, please do merge() after using this
     pair<node *, node *> split(const T &x) { return node::split(head, x); }
+    // the second tree has exactly k vertices
     pair<node *, node *> split_size(const size_t &k) { return node::split_size(head, k); }
+    // fix a tree
     void merge(node *a, node *b) { head = node::merge(a, b); }
 
     ~treap() {
