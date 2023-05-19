@@ -20,7 +20,7 @@ KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 2
 SpaceBeforeRangeBasedForLoopColon: false
 AlignEscapedNewlines: Left
-# InsertBraces: true
+InsertBraces: true
 ---
 Language: JavaScript
 # Use 100 columns for JS.

@@ -8,9 +8,11 @@ mt19937 mt(rd());
 template <typename T> struct treap {
     struct node {
         // for all k1 from left, k2 from right: k1<k<=k2;
+        T key;
+        T sum;
         // for all p1 from left or right:       p1<=p;
-        T key, sum;
-        size_t prior, size;
+        size_t prior;
+        size_t size;
         node *left = nullptr, *right = nullptr;
 
         operator T() const { return key; }
@@ -173,10 +175,12 @@ template <typename T> struct treap {
 
     // first keys less than k, second keys at least x, please do merge() after using this
     pair<node *, node *> split(const T &x) { return node::split(head, x); }
-    // the second tree has exactly k vertices
+    // the second tree has exactly k vertices, please do merge() after using this
     pair<node *, node *> split_size(const size_t &k) { return node::split_size(head, k); }
-    // fix a tree
+    // get a tree by merging pair
     void merge(node *a, node *b) { head = node::merge(a, b); }
+    // get a tree by merging pair
+    void merge(pair<node *, node *> p) { head = node::merge(p.first, p.second); }
 
     ~treap() {
         if (head)

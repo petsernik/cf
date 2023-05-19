@@ -47,6 +47,10 @@ tmp1 auto mxe(T &a) { return max_element(all(a)); }
 tmp1 auto mxe(T f, T l) { return max_element(f, l); }
 tmp2 auto mxe(T &a, N pr) { return max_element(all(a), pr); }
 tmp2 auto mxe(T f, T l, N pr) { return max_element(f, l, pr); }
+tmp1 auto fnd(T &a) { return find(all(a)); }
+tmp1 auto fnd(T f, T l) { return find(f, l); }
+tmp2 auto fnd(T &a, N pr) { return find(all(a), pr); }
+tmp2 auto fnd(T f, T l, N pr) { return find(f, l, pr); }
 tmp2 auto min(T a, N b) { return sizeof(a) > sizeof(b) ? min(a, (T)b) : min((N)a, b); }
 tmp2 auto max(T a, N b) { return sizeof(a) > sizeof(b) ? max(a, (T)b) : max((N)a, b); }
 
@@ -88,19 +92,19 @@ tmpk auto &operator>>(istream &is, vec<arr<T, k>> &x) {
     fore(x) is >> e;
     return is;
 }
-tmp1 auto &operator<<(ostream &os, vec<T> &x) {
+tmp1 auto &operator<<(ostream &os, const vec<T> &x) {
     fore(x) os << e << " ";
     return os;
 }
-tmp1 auto &operator<<(ostream &os, vec<vec<T>> &x) {
+tmp1 auto &operator<<(ostream &os, const vec<vec<T>> &x) {
     fore(x) os << e << "\n";
     return os;
 }
-tmpk auto &operator<<(ostream &os, arr<T, k> &x) {
+tmpk auto &operator<<(ostream &os, const arr<T, k> &x) {
     fore(x) os << e << " ";
     return os;
 }
-tmpk auto &operator<<(ostream &os, vec<arr<T, k>> &x) {
+tmpk auto &operator<<(ostream &os, const vec<arr<T, k>> &x) {
     fore(x) os << e << "\n";
     return os;
 }
