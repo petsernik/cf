@@ -156,8 +156,9 @@ signed main() {
 #if defined(COUNTING_TIME) & defined(TESTS)
     start_time = chrono::steady_clock::now();
 #endif
-    while (T--)
+    while (T--) {
         solve();
+    }
 #if defined(COUNTING_TIME) & defined(TESTS)
     finish_time = chrono::steady_clock::now();
     auto elapsed_ms = chrono::duration_cast<chrono::milliseconds>(finish_time - start_time);
