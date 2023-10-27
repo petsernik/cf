@@ -1,6 +1,6 @@
 #ifndef INCLUDE
-#include <map>
 #include <vector>
+#include <map>
 using namespace std;
 #endif
 
@@ -35,7 +35,8 @@ struct dsu {
     }
 };
 
-template <class T> struct dsumap {
+template<class T>
+struct dsumap {
     multimap<T, T> parent;
     multimap<T, int> rank;
 

@@ -1,4 +1,22 @@
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <iomanip>
+#include <map>
+#include <set>
+#include <fstream>
+#include <string>
+#include <bitset>
+#include <ctime>
+#include <random>
+#include <iterator>
+#include <cmath>
+#include <queue>
+#include <deque>
+#include <time.h>
+#include <chrono>
+#include <functional>
 #define INCLUDE
 
 using namespace std;
@@ -11,12 +29,10 @@ template <class T, size_t k> using arr = array<T, k>;
 #define all(a) (a).begin(), (a).end()
 #define myset(T, a, b, cmp) multiset<T, function<bool(T, T)>> s([&](T a, T b) { return cmp; })
 #define print(ans) cout << ans << "\n"
-#define prret(ans)  \
-    {               \
-        print(ans); \
-        return;     \
-    }
-#define fore(a) for (auto &e: (a))
+#define prret(ans) cout << ans << "\n"; return
+#define ifret(stat, ans) if (stat) { prret(ans); }
+#define ynret(stat) if (stat) { prret("YES"); } else { prret("NO"); }
+#define fore(a) for (auto &e : (a))
 #define bit(a, i) (((a) >> (i)) & 1LL)
 #define mask(a, x) ((a) & (x))
 #define dty(a) decltype(a)
@@ -47,28 +63,14 @@ tmp1 auto mxe(T &a) { return max_element(all(a)); }
 tmp1 auto mxe(T f, T l) { return max_element(f, l); }
 tmp2 auto mxe(T &a, N pr) { return max_element(all(a), pr); }
 tmp2 auto mxe(T f, T l, N pr) { return max_element(f, l, pr); }
-tmp1 auto fnd(T &a) { return find(all(a)); }
-tmp1 auto fnd(T f, T l) { return find(f, l); }
-tmp2 auto fnd(T &a, N pr) { return find(all(a), pr); }
-tmp2 auto fnd(T f, T l, N pr) { return find(f, l, pr); }
 tmp2 auto min(T a, N b) { return sizeof(a) > sizeof(b) ? min(a, (T)b) : min((N)a, b); }
 tmp2 auto max(T a, N b) { return sizeof(a) > sizeof(b) ? max(a, (T)b) : max((N)a, b); }
 
 #ifdef __GNUC__
 __extension__ typedef __int128 int128;
 __extension__ typedef __float128 float128;
-auto &operator>>(istream &is, int128 &x) {
-    ll e;
-    is >> e;
-    x = e;
-    return is;
-}
-auto &operator>>(istream &is, float128 &x) {
-    long double e;
-    is >> e;
-    x = e;
-    return is;
-}
+auto &operator>>(istream &is, int128 &x) { ll e; is >> e; x = e; return is; }
+auto &operator>>(istream &is, float128 &x) { long double e; is >> e; x = e; return is; }
 auto &operator<<(ostream &os, int128 &x) { return os << (long long)x; }
 auto &operator<<(ostream &os, float128 &x) { return os << (long double)x; }
 #else
@@ -76,38 +78,14 @@ using int128 = long long;
 using float128 = long double;
 #endif
 
-tmp1 auto &operator>>(istream &is, vec<T> &x) {
-    fore(x) is >> e;
-    return is;
-}
-tmp1 auto &operator>>(istream &is, vec<vec<T>> &x) {
-    fore(x) is >> e;
-    return is;
-}
-tmpk auto &operator>>(istream &is, arr<T, k> &x) {
-    fore(x) is >> e;
-    return is;
-}
-tmpk auto &operator>>(istream &is, vec<arr<T, k>> &x) {
-    fore(x) is >> e;
-    return is;
-}
-tmp1 auto &operator<<(ostream &os, const vec<T> &x) {
-    fore(x) os << e << " ";
-    return os;
-}
-tmp1 auto &operator<<(ostream &os, const vec<vec<T>> &x) {
-    fore(x) os << e << "\n";
-    return os;
-}
-tmpk auto &operator<<(ostream &os, const arr<T, k> &x) {
-    fore(x) os << e << " ";
-    return os;
-}
-tmpk auto &operator<<(ostream &os, const vec<arr<T, k>> &x) {
-    fore(x) os << e << "\n";
-    return os;
-}
+tmp1 auto &operator>>(istream &is, vec<T> &x) { fore(x) is >> e; return is; }
+tmp1 auto &operator>>(istream &is, vec<vec<T>> &x) { fore(x) is >> e; return is; }
+tmpk auto &operator>>(istream &is, arr<T, k> &x) { fore(x) is >> e; return is; }
+tmpk auto &operator>>(istream &is, vec<arr<T, k>> &x) { fore(x) is >> e; return is; }
+tmp1 auto &operator<<(ostream &os, vec<T> &x) { fore(x) os << e << " "; return os; }
+tmp1 auto &operator<<(ostream &os, vec<vec<T>> &x) { fore(x) os << e << "\n"; return os; }
+tmpk auto &operator<<(ostream &os, arr<T, k> &x) { fore(x) os << e << " "; return os; }
+tmpk auto &operator<<(ostream &os, vec<arr<T, k>> &x) { fore(x) os << e << "\n"; return os; }
 
 // get i-th bit from a:                #DEFINE bit(a,i) (((a)>>(i))&1LL)
 // x is a group like indicator:        bit(x,i) == 1  iff  i in x
@@ -117,28 +95,26 @@ auto start_time = chrono::steady_clock::now();
 auto finish_time = chrono::steady_clock::now();
 random_device rd;
 mt19937 mt(rd());
-ll divup(ll a, ll b) { return a / b + ((a ^ b) > 0 && a % b); }   // dividing a by b rounded up
-ll divdown(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b); } // dividing a by b rounded down
-ll truemod(ll a, ll b) { return a = a % b, a + (a < 0) * b; }
-ll gcd(ll x, ll y) {
-    while (y) {
-        x %= y;
-        swap(x, y);
-    }
-    return abs(x);
-}
+ll divup(ll a, ll b) { return a / b + ((a ^ b) > 0 && a % b); }     // dividing a by b rounded up
+ll divdown(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b); }   // dividing a by b rounded down
+ll truemod(ll a, ll mod) { return a = a % mod, a + (a < 0) * mod; }
+ll gcd(ll x, ll y) { while (y) { x %= y; swap(x, y); } return abs(x); }
 ll lcm(ll x, ll y) { return abs(x * y) / gcd(x, y); }
 const ll inf = (ll)1e18;
-const ll mod = 1000000007;
-const ll N = 2e5 + 1;
-// vec<ll> f(N);
-// typedef bitset<N> rel;
+ll mod = 998244353;
+const ll N = 1e5 + 2;
+
+//ifstream fin("input.txt");
+//ofstream fout("output.txt");
+//#define cin fin
+//#define cout fout 
 
 void precalc() {
-    
+
 }
 
 #define TESTS
+
 void solve() {
     
 }
@@ -156,12 +132,12 @@ signed main() {
 #if defined(COUNTING_TIME) & defined(TESTS)
     start_time = chrono::steady_clock::now();
 #endif
-    while (T--) {
+    while (T--)
         solve();
-    }
 #if defined(COUNTING_TIME) & defined(TESTS)
     finish_time = chrono::steady_clock::now();
-    auto elapsed_ms = chrono::duration_cast<chrono::milliseconds>(finish_time - start_time);
+    auto elapsed_ms =
+        chrono::duration_cast<chrono::milliseconds>(finish_time - start_time);
     cerr << "\nElapsed time: " << elapsed_ms.count() << " ms\n";
 #endif
     return 0;

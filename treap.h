@@ -5,14 +5,13 @@ random_device rd;
 mt19937 mt(rd());
 #endif
 
-template <typename T> struct treap {
+template <typename T>
+struct treap {
     struct node {
         // for all k1 from left, k2 from right: k1<k<=k2;
-        T key;
-        T sum;
         // for all p1 from left or right:       p1<=p;
-        size_t prior;
-        size_t size;
+        T key, sum;
+        size_t prior, size;
         node *left = nullptr, *right = nullptr;
 
         operator T() const { return key; }
@@ -42,7 +41,8 @@ template <typename T> struct treap {
                 node->right = p.first;
                 update(node);
                 return {node, p.second};
-            } else {
+            }
+            else {
                 auto p = split(node->left, x);
                 node->left = p.second;
                 update(node);
@@ -50,7 +50,7 @@ template <typename T> struct treap {
             }
         }
 
-        // the second tree has exactly k vertices
+        // second tree has k vertices
         static pair<node *, node *> split_size(node *node, const size_t &k) {
             if (!node)
                 return {nullptr, nullptr};
@@ -59,7 +59,8 @@ template <typename T> struct treap {
                 node->right = p.first;
                 update(node);
                 return {node, p.second};
-            } else {
+            }
+            else {
                 auto p = split_size(node->left, k - 1 - node->right_size());
                 node->left = p.second;
                 update(node);
@@ -67,7 +68,7 @@ template <typename T> struct treap {
             }
         }
 
-        // note that the first keys must be less than the second keys
+        // first keys must be less than second keys
         static node *merge(node *t1, node *t2) {
             if (!t1 || !t2)
                 return t1 ? t1 : t2;
@@ -75,7 +76,8 @@ template <typename T> struct treap {
                 t1->right = merge(t1->right, t2);
                 update(t1);
                 return t1;
-            } else {
+            }
+            else {
                 t2->left = merge(t1, t2->left);
                 update(t2);
                 return t2;
@@ -173,14 +175,9 @@ template <typename T> struct treap {
     node *lower_bound(const T &x) { return head ? head->lower_bound(x) : nullptr; }
     node *upper_bound(const T &x) { return head ? head->upper_bound(x) : nullptr; }
 
-    // first keys less than k, second keys at least x, please do merge() after using this
     pair<node *, node *> split(const T &x) { return node::split(head, x); }
-    // the second tree has exactly k vertices, please do merge() after using this
     pair<node *, node *> split_size(const size_t &k) { return node::split_size(head, k); }
-    // get a tree by merging pair
     void merge(node *a, node *b) { head = node::merge(a, b); }
-    // get a tree by merging pair
-    void merge(pair<node *, node *> p) { head = node::merge(p.first, p.second); }
 
     ~treap() {
         if (head)
@@ -196,5 +193,7 @@ template <typename T> struct treap {
         return os;
     }
 
-    friend ostream &operator<<(ostream &os, const treap &treap) { return os << treap.head; }
+    friend ostream &operator<<(ostream &os, const treap &treap) {
+        return os << treap.head;
+    }
 };

@@ -14,11 +14,18 @@ void calcmodC(ll n = N) {
 }
 
 vec<ll> fib;
-void calcmodfib(ll n = N) {
+void calcfib(ll n = N) {
     fib = vec<ll>(n + 1, 1);
     for (int i = 2; i <= n; ++i)
         fib[i] = fib[i - 1] + fib[i - 2];
 }
+void calcmodfib(ll n = N) {
+    fib = vec<ll>(n + 1, 1);
+    for (int i = 2; i <= n; ++i)
+        fib[i] = (fib[i - 1] + fib[i - 2]) % mod;
+}
+
+
 
 struct prefsum {
     prefsum(vec<ll> &a) {
@@ -83,7 +90,7 @@ ll powmod(ll base, ll exp, ll modulus = mod) {
 }
 
 vec<vec<ll>> ans;
-void backpack(vec<ll> &w, vec<ll> &p, ll W) { // sum(w)<=W, sum(p)=max = ans[W][n]
+void backpack(vec<ll> &w, vec<ll> &p, ll W) {   // sum(w)<=W, sum(p)=max = ans[W][n]
     ll n = p.size();
     ans = vec<vec<ll>>(W + 1, vec<ll>(n + 1));
     for (int i = 0; i <= W; ++i)
@@ -95,7 +102,7 @@ void backpack(vec<ll> &w, vec<ll> &p, ll W) { // sum(w)<=W, sum(p)=max = ans[W][
 }
 
 vec<ll> res;
-void backpack_res(vec<ll> &w, vec<ll> &p, ll W) { // sum(w)<=W, sum(p)=max = ans[W][n]
+void backpack_res(vec<ll> &w, vec<ll> &p, ll W) {   // sum(w)<=W, sum(p)=max = ans[W][n]
     ll n = p.size();
     res = vec<ll>();
     for (ll i = W, j = n; j > 0; --j) {
@@ -111,14 +118,15 @@ void scanline() {
     ll n;
     cin >> n;
     vec<ll> a(n), b(n);
+    vec<vec<ll>> sl;
     for (ll i = 0; i < n; ++i)
         cin >> a[i];
     for (ll i = 0; i < n; ++i)
         cin >> b[i];
-    vec<vec<ll>> sl;
     for (ll i = 0; i < n; ++i) {
-        sl.push_back({a[i], 1});  // open
-        sl.push_back({b[i], -1}); // close
+        sl.push_back({ a[i], 1 });    // open
+        sl.push_back({ b[i], -1 });   // close
     }
-    sort(sl.begin(), sl.end(), lmd(a, b, a[0] < b[0] || a[0] == b[0] && a[1] > b[1]));
+    sort(sl.begin(), sl.end(),
+        lmd(a, b, a[0] < b[0] || a[0] == b[0] && a[1] > b[1]));
 }
