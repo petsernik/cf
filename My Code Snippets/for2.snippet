@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>ff</Title>
+			<Shortcut>ff</Shortcut>
+			<Description>Фрагмент кода для цикла for</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>index1</ID>
+					<Default>i</Default>
+					<ToolTip>Индекс</ToolTip>
+				</Literal>
+				<Literal>
+					<ID>max1</ID>
+					<Default>n</Default>
+					<ToolTip>Максимальная длина</ToolTip>
+				</Literal>
+        <Literal>
+          <ID>index2</ID>
+          <Default>j</Default>
+          <ToolTip>Индекс</ToolTip>
+        </Literal>
+        <Literal>
+          <ID>max2</ID>
+          <Default>m</Default>
+          <ToolTip>Максимальная длина</ToolTip>
+        </Literal>
+			</Declarations>
+			<Code Language="cpp">
+        <![CDATA[for (ll i = 0; i < $max1$; ++i)
+				$selected$ for (ll j = 0; j < $max2$; ++j) $end$
+           ]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

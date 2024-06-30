@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>vector-vector</Title>
+			<Shortcut>vv</Shortcut>
+			<Description>Фрагмент кода для цикла for</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>type</ID>
+					<Default>char</Default>
+					<ToolTip>Тип переменной элемента управления</ToolTip>
+				</Literal>
+				<Literal>
+					<ID>index</ID>
+					<Default>i</Default>
+					<ToolTip>Индекс</ToolTip>
+				</Literal>
+        <Literal>
+          <ID>name</ID>
+          <Default>a</Default>
+          <ToolTip>Начало</ToolTip>
+        </Literal>
+				<Literal>
+					<ID>n</ID>
+					<Default>n</Default>
+					<ToolTip>Максимальная длина</ToolTip>
+				</Literal>
+        <Literal>
+          <ID>m</ID>
+          <Default>m</Default>
+          <ToolTip>Максимальная длина</ToolTip>
+        </Literal>
+			</Declarations>
+			<Code Language="cpp"><![CDATA[vec<vec<$type$>> $name$($n$, vec<$type$>($m$)); $end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

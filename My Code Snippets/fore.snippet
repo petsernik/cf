@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>fore</Title>
+			<Shortcut>fe</Shortcut>
+			<Description>Фрагмент кода для цикла for</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>element</ID>
+					<Default>e</Default>
+					<ToolTip>Элемент</ToolTip>
+				</Literal>
+        <Literal>
+          <ID>list</ID>
+          <Default>a</Default>
+          <ToolTip>Лист</ToolTip>
+        </Literal>
+			</Declarations>
+			<Code Language="cpp"><![CDATA[for (auto &$element$: $list$) $end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
