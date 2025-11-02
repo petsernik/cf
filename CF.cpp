@@ -28,6 +28,7 @@ template <class T, size_t k> using arr = array<T, k>;
 #define lmd(a, b, expr) [&](auto a, auto b) { return expr; }
 #define all(a) (a).begin(), (a).end()
 #define myset(T, a, b, cmp) multiset<T, function<bool(T, T)>> s([&](T a, T b) { return cmp; })
+#define setprec(x) cout << fixed << setprecision(x)
 #define print(ans) cout << ans << "\n"
 #define prret(ans) cout << ans << "\n"; return
 #define ifret(stat, ans) if (stat) { prret(ans); }
